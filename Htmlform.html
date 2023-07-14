@@ -16,85 +16,122 @@
     </head>
 
     <body>
-        <div class="bg-info p-5 d-flex flex-row justify-content-center" style="height:auto; width:auto; ">
-            <div id="loginContainer" class="loginContainer">
-                <div id="first" class="p-5 " style="height:auto; width:auto; background:#ffffff; border-top-left-radius:15px; border-bottom-left-radius:15px; ">
-                    <h1 class="heading1" style="font-size:30px; font-family:roboto; margin-bottom:20px; color:blue;">General Information</h1>
-                    <div class="names d-flex flex-row">
-                        <input id="firstNamejs" type="text" placeholder="firstName" class="inputElement" style="width:175px; height:50px; border-color:grey; border-top:0px; border-left:0px; border-right:0px; margin-right:50px; background:transparent; margin-bottom:20px;">
-                        <input id="lastNamejs" type="text" placeholder="LastName" class="inputElement ">
-                    </div>
-                    <select id="positionJs" placeholder="Position" class="inputElement1 ">
-                        <option value="Position">Position</option>
-                        <option value="Fresher">Fresher</option>
-                        <option value="Developer">Developer</option>
-                        <option value="Tester">Tester</option>
-                    </select>
-                    <input id = "companyJs" type="text" placeholder="Company" class="inputElement1">
-                    <div class="names" d-flex flex-row>
-                        <input id="businessarenaJs" type="text" placeholder="Business Arena" class="inputElement ">
-                        <select id="EmployesJs" placeholder="Employes" class="inputElement ">
-                            <option value="Employees">Employees</option>
-                            <option value="Manager">Manager</option>
-                            <option value="SeniorDeveloper">Senior Developer</option>
-                            <option value="JuniorDeveloper">Junior Developer</option>
+        <div class="main-container bg-info" id="mainContainer">
+            <div class="container">
+                <div class="row">
+                    <div id="loginContainer" class="loginContainer ">
+                        <div id="first" class="informationPage bg-white p-3 col-sm-12 col-lg-6">
+                            <h1 class="heading1">General Information</h1>
+                            <div class="names"> 
+                                <div class="mr-3"> 
+                                    <input id="firstNamejs" oninput="this.value = this.value.toUpperCase()" pattern="(/^)" type="text" placeholder="firstName*" class="inputElement">                                                                 
+                                </div> 
+                                <div> 
+                                    <input id="lastNamejs" oninput="this.value = this.value.toUpperCase()" type="text" placeholder="lastName*" class="inputElement">                                  
+                                </div> 
+                            </div>
+                            <select id="positionJs" value="Position" class="inputElement1">
+                                <option value=""disabled selected>Position</option>
+                                <option value="Fresher">Fresher</option>
+                                <option value="Developer">Developer</option>
+                                <option value="Tester">Tester</option>
+                                <option value="Manager">Manager</option>
+                            </select>
+                            <p id="errorMessage2" class="errorMessage"></p>
+                            </br>
+                            <div>
+                            <input id = "companyJs" type="text" placeholder="Company" class="inputElement1">
+                            <p id="errorMessage3" class="errorMessage"></p>
+                            </div>
+                            <div class="names d-flex flex-row">
+                                <div class="mr-2">
+                                    <input id="businessarenaJs" type="text" placeholder="Business Arena" class="inputElement" >
+                                    <p id="errorMessage4" class="errorMessage"></p>
+                                </div>
+                            <div>
+                                <select id="EmployesJs" placeholder="Employes" class="inputElement" >
+                                    <option value=""disabled selected>Employees</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="SeniorDeveloper">Senior Developer</option>
+                                    <option value="JuniorDeveloper">Junior Developer</option>     
+                                </select>
+                                <p id="errorMessage5" class="errorMessage"></p>
+                            </div>
+                            </div>
                             
-                        </select>
+                                <input id="agrCheckbox" type="checkbox">
+                                <label for="agrCheckbox" class="termsStyle"><span class="starstyle">*</span>I do accept the <span class="termsSpanElStyle">Terms and Condition</span> of your site</label>
+                                
+                            <div>
+                                <div class="checkboxContainer">
+                                    <input value="1" name="one"  id="checkBox1" type="checkbox"></input>
+                                    <label for="checkBox1" class="checkbox">IIT</label>
+    
+                                    <input value="1" name="one"  id="checkBox2" type="checkbox"></input>
+                                    <label for="checkBox2" class="checkbox" >B.Tech</label>
+                                    <input value="1" name="one" id="checkBox3" type="checkbox"></input>
+                                    <label for="checkBox3" class="checkbox" >M.tech</label>
+                                </div>
+                                <p id="errorMessage7" class="errorMessage"></p>
+                            </div>
+                            <div>
+                                <div class="radioContainer">
+                                    <input name="checkboxDis"  id="radioBtn1" type="radio" checked></input>
+                                    <label for="radioBtn1" class="checkbox">Male</label>
+                                    <input name="checkboxDis"  id="radioBtn2" type="radio"></input>
+                                    <label for="radioBtn2" class="checkbox" >Female</label>
+                                </div>
+                                <p id="errorMessage8" class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div id="second" class="contactDetailsContainer p-3 col-sm-12 col-lg-6" >
+                                <h1 class="contactsHeading">Contact Details</h1>
+                            <div class="d-flex flex-row">
+                                <input id="streetName" type="text" placeholder="Street+Nr" class="inputElement1 mb-4" >
+                                <input id="adiitionalInfo" type="text" placeholder="Additonal Information" class="inputElement1 mb-4" >
+                            </div>
+                            <div class="names d-flex flex-row">
+                                <input id="zipCode" type="text" placeholder="Zip Code" class="inputElement mb-4" >
+                                <select id="placeNative" placeholder="Place" class="inputElement1 mb-4" >
+                                    <option value=""disabled selected>Place</option>
+                                    <option value="Hydrabad">Hydrabad</option>
+                                    <option value="AndhraPradesh">Andhra Pradesh</option>
+                                    <option value="Banglore">Banglore</option>
+                                    <option value="Chennai">Chennai</option>
+                                </select>
+                            </div>
+                            <select id="countrysNative" placeholder="Country" class="inputElement1 mb-4" >
+                                <option value=""disabled selected>Country</option>
+                                <option value="India">India</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Austraila">Austraila</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                            <div class="names d-flex flex-row">
+                                <input id="zoneCode" type="text" placeholder="Code+" class="inputElement" >
+                                <input id="mobileNumber"  maxlength="10"  type="number" pattern="/^[1-9]{1}[0-9]{9}/" placeholder="Phone Number" class="inputElement" >
+                            </div>
+                            <input id="emailVerify" type="text" pattern=".+@globex\.com" size="30" placeholder="Your Email" class="inputElement1" >
+                        </br>
+        
+                        <div class="buttonContainer mt-3">
+                            <button id="ButtonEl" class="rigesterButton mt-5">Register Badge</button>
+                            
+                            <button id="ButtonE2" class="rigesterButton mt-5">Refresh</button>
+                        </div>
+                        </div>
                     </div>
-                    <input id="agrCheckbox" type="checkbox">
-                    <label for="agrCheckbox" class="termsStyle">I do accept the <span class="termsSpanElStyle">Terms and Condition</span> of your site</label>
 
-                    <div class="checkboxContainer">
-                        <input value="1" name="one"  id="checkBox1" type="checkbox"></input>
-                        <label for="checkBox1" class="checkbox">IIT</label>
-                        <input value="1" name="one"  id="checkBox2" type="checkbox" checked></input>
-                        <label for="checkBox2" class="checkbox" >B.Tech</label>
-                        <input value="1" name="one" id="checkBox3" type="checkbox"></input>
-                        <label for="checkBox3" class="checkbox" >M.tech</label>
-                    </div>
-                    <div class="radioContainer">
-                        <input name="checkboxDis"  id="radioBtn1" type="radio" checked></input>
-                        <label for="radioBtn1" class="checkbox">Male</label>
-                        <input name="checkboxDis"  id="radioBtn2" type="radio"></input>
-                        <label for="radioBtn2" class="checkbox" >Female</label>
-                        <input name="checkboxDis"  id="radioBtn2" type="radio"></input>
-                        <label for="radioBtn3" class="checkbox" >Female</label>
-                    </div>
+
                 </div>
-                <div id="second" class="contactDetailsContainer p-5" style="height:auto; width:auto; background:rgb(161, 189, 248); border-top-right-radius:15px; border-bottom-right-radius:15px;">
-                        <h1 class="contactsHeading">Contact Details</h1>
-                        <input id="streetName" type="text" placeholder="Street+Nr" class="inputElement1">
-                        <input id="adiitionalInfo" type="text" placeholder="Additonal Information" class="inputElement1 ">
-                    <div class="names" d-flex flex-row>
-                        <input id="zipCode" type="text" placeholder="Zip Code" class="inputElement ">
-                        <select id="placeNative" placeholder="Place" class="inputElement ">
-                            <option value="Place">Place</option>
-                            <option value="Hydrabad">Hydrabad</option>
-                            <option value="AndhraPradesh">Andhra Pradesh</option>
-                            <option value="Banglore">Banglore</option>
-                            <option value="Chennai">Chennai</option>
-                        </select>
-                    </div>
-                    <select id="countrysNative" placeholder="Country" class="inputElement1 ">
-                        <option value="Chennai">Country</option>
-                        <option value="India">India</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Austraila">Austraila</option>
-                        <option value="Japan">Japan</option>
-                    </select>
-                    <div class="names" d-flex flex-row>
-                        <input id="zoneCode" type="text" placeholder="Code+" class="inputElement ">
-                        <input id="mobileNumber" maxlength=10 pattern="[1-9]{1}[0-9]{9}\d*" type="number" placeholder="Phone Number" class="inputElement ">
-                    </div>
-                    <input id="emailVerify" type="text" placeholder="Your Email" class="inputElement1 ">
-                </br>
-
-                    
-                    <button id="ButtonEl" class="rigesterButton btn btn-primary">Register Badge</button>
-                </div>
-
             </div>
         </div>
+    
+        <div id="container" class="d-flex flex-column justify-content-center pl-5">
+
+        </div>
+        
+
         <script  src="dynamic.js"></script>
     </body>
 </html> 
