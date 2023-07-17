@@ -171,4 +171,36 @@ body {
     } 
 }
 
+/* for post editing elements */
 
+.getStylings {
+    background-color:rgba(163, 232, 245, 0.26);
+    padding:50px;
+    height:auto;
+    background-size:cover;
+    /* padding-left:50px; */
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.getMiniContinerStylings {
+    background-color:white;
+    height:auto;
+    width:120vh;
+    border-radius:15px;
+    padding:10px;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+.elementsStyling {
+    font-size:20px;
+}
+.imageStyling {
+    height:100px;
+    width:100px;
+    border-radius:100px;
+    margin-top:20px;
+}
+.pagination {
+    margin-left:48px;
+}
