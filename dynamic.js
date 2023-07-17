@@ -145,7 +145,7 @@ button.addEventListener("click", function(event){
 
     storeData.push(details);
     storeData.sort((object1 , object2) => object1.firstName.localeCompare(object2.firstName));  
-    printDeatils(details);
+    // printDeatils(details);
 
     // if (((firstNamejsEl.value === "") || (lastNamejsEl.value === "") || (positionJsEl.value==="") || (companySelectorEle.value==="") || (businessArenaElement.value==="")
     //     || (EmployeElement.value==="")|| (agrCheckbox.checked===false) || (streetNameEl.value==="") || (adiitionalInfoEl.value==="") || (zipCodeEl.value==="") 
@@ -160,7 +160,8 @@ button.addEventListener("click", function(event){
     //         printDeatils(details);
     // }
 
-    
+    apiCalls();
+    //arrangeData (jsonData);
 
 })
 function printDeatils() {
@@ -337,25 +338,115 @@ button1.addEventListener("click",function(event) {
 })
 
 
-let url="";
-let option = {
-                method : "POST",
-                header : {
-                            "content-type" : "application/JSON",
-                            acceptence : "application/JSON",
-                            Authorization : "Bearer link"
-                            },
-                body:JSON.stringify(storeData),
 
-            }
-fetch(url,option)
-.then(function(response){
-    return json()
-})
-.then(function(jsonData){
-    console.log(jsonData);
-})
+function apiCalls() {
+    // const object = {
+    //                     id:"1234567",
+    //                     name:"hhhhhhh",
+    //                     email:"aaaaaaaaaa@gmail.com",
+    //                     gender:"male",
+    //                     status:"Active",
+    //                 }
+    // //let url="https://gorest.co.in/public-api/users";
+    let url="https://64b4d322f3dbab5a95c62627.mockapi.io/requiredData?limit=20&offset=40";
+    // let option = {
+    //                 method : "POST",
+    //                 headers : {
+    //                             "content-type" : "application/json",
+    //                             // Accept : "application/json",
+    //                             // Authorization : "Bearer 4794d7529e2b8505203d46b2c88c0eaf11ff78d2c3eb7ad6984c9e37e24cf21e",
+    //                             },
+    //                 body:JSON.stringify(object)
 
+    //             }
+    // fetch(url,option)
+
+    // .then(function(response){
+    //     return response.json();
+    // })
+    // .then(function(jsonData){
+    //     console.log(jsonData);
+    //     // let {createdAt,name,avatar,id} = jsonData
+    //     arrangeData (jsonData)
+    // })
+
+    let optionGet = {
+        method:"GET",
+    }
+    fetch(url,optionGet)
+
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(jsonData){
+        console.log(jsonData);
+        // let {createdAt,name,avatar,id} = jsonData
+        arrangeData (jsonData)
+
+    })
+
+}
+
+
+// function firstPage() {
+//     jsonLength = 5;
+// }
+// function firstPage() {
+//     jsonLength = 5;
+// }
+
+
+let containerEl = document.getElementById("container")
+let detailContainer = document.createElement("div");
+detailContainer.classList.add("getStylings");
+containerEl.appendChild(detailContainer);
+
+
+function arrangeData(jsonData) {
+
+    for (let i=0;i<jsonData.length;i++) {
+        let detilasMainContainer = document.createElement("div");
+        detilasMainContainer.classList.add("getMiniContinerStylings","d-flex","flex-row")
+        detailContainer.appendChild(detilasMainContainer);
+
+        let textContainer = document.createElement("div");
+        textContainer.classList.add("getMiniContinerStylings")
+        detilasMainContainer.appendChild(textContainer);
+
+        let createdDate = document.createElement("h1");
+        createdDate.textContent = "CreatedAt : "+jsonData[i].createdAt;
+        createdDate.classList.add("elementsStyling")
+        textContainer.appendChild(createdDate);
+
+        let personName = document.createElement("h1");
+        personName.textContent = "Name : "+jsonData[i].name;
+        personName.classList.add("elementsStyling")
+        textContainer.appendChild(personName);
+
+        let personId = document.createElement("h1");
+        personId.textContent = "PersonID : "+jsonData[i].id;
+        personId.classList.add("elementsStyling")
+        textContainer.appendChild(personId);
+
+        let personAvatar = document.createElement("img");
+        personAvatar.src = jsonData[i].avatar;
+        personAvatar.classList.add("imageStyling")
+        detilasMainContainer.appendChild(personAvatar);
+
+    }
+}
+
+
+
+var state = {
+    allData:jsonData,
+    "page":1,
+    "rows":5,
+}
+
+function pagination(allData,page,rows) {
+
+}
 
 
  
