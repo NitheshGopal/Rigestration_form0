@@ -160,7 +160,7 @@ button.addEventListener("click", function(event){
     //         printDeatils(details);
     // }
 
-    apiCalls();
+    //apiCalls();
     //arrangeData (jsonData);
 
 })
@@ -337,9 +337,9 @@ button1.addEventListener("click",function(event) {
     emailVerify.value="";
 })
 
+let allData = null
 
-
-function apiCalls() {
+//function apiCalls() {
     // const object = {
     //                     id:"1234567",
     //                     name:"hhhhhhh",
@@ -379,79 +379,120 @@ function apiCalls() {
         return response.json();
     })
     .then(function(jsonData){
-        console.log(jsonData);
-        // let {createdAt,name,avatar,id} = jsonData
-        arrangeData (jsonData)
-
+        //console.log(jsonData);
+        // let {createdAt,name,avatar,id} = jsonDataitemsPerPage
+        allData = jsonData.sort((object1,object2) => object1.name.localeCompare(object2.name));
+        //allData = jsonData
+        //arrangeData (jsonData)
+        arrangeData(1)
     })
 
-}
+//}
+
+let itemsPerPage = 10;
+let pagination1 = document.getElementById("pagination");
+
+let containerEl = document.getElementById("container");
+containerEl.classList.add("mainContainerStyling")
+
+let inputElement = document.createElement("input");
+inputElement.classList.add("searchInputStyling")
+inputElement.placeholder="Search Names"
+inputElement.id="searchInputEl"
+inputElement.type = "search";
+containerEl.appendChild(inputElement);
 
 
-// function firstPage() {
-//     jsonLength = 5;
-// }
-// function firstPage() {
-//     jsonLength = 5;
-// }
-
-
-let containerEl = document.getElementById("container")
 let detailContainer = document.createElement("div");
 detailContainer.classList.add("getStylings");
 containerEl.appendChild(detailContainer);
 
+let searchedObject =[]
 
-function arrangeData(jsonData) {
+inputElement.addEventListener("keyup", function(event){
+    let nameTyping = event.target.value;
+     for(let object of allData) {
+        if(object.name.match(nameTyping)) {
+             searchedObject.push(object)
+             console.log("🚀 ~ file: dynamic.js:417 ~ inputElement.addEventListener ~ searchedObject:", searchedObject)
+             arrangeData(1,searchedObject);
+        }
+    }
+})
 
-    for (let i=0;i<jsonData.length;i++) {
+// let searchedObjectLength = searchedObject.length;
+// console.log(searchedObjectLength);
+
+function arrangeData(pageNumber,list) {
+        console.log("🚀 ~ file: dynamic.js:428 ~ arrangeData ~ list:", list)
+        
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const pageData = allData.slice(startIndex, endIndex);
+    detailContainer.innerHTML = '';
+
+    pageData.forEach(item => {
+
         let detilasMainContainer = document.createElement("div");
-        detilasMainContainer.classList.add("getMiniContinerStylings","d-flex","flex-row")
+        detilasMainContainer.classList.add("getMiniContinerStylings", "d-flex", "flex-row");
         detailContainer.appendChild(detilasMainContainer);
 
         let textContainer = document.createElement("div");
-        textContainer.classList.add("getMiniContinerStylings")
+        textContainer.classList.add("getMiniContinerStylings");
         detilasMainContainer.appendChild(textContainer);
 
         let createdDate = document.createElement("h1");
-        createdDate.textContent = "CreatedAt : "+jsonData[i].createdAt;
-        createdDate.classList.add("elementsStyling")
+        createdDate.textContent = "CreatedAt: " + item.createdAt;
+        createdDate.classList.add("elementsStyling");
         textContainer.appendChild(createdDate);
 
         let personName = document.createElement("h1");
-        personName.textContent = "Name : "+jsonData[i].name;
-        personName.classList.add("elementsStyling")
+        personName.textContent = "Name: " + item.name;
+        personName.classList.add("elementsStyling");
         textContainer.appendChild(personName);
 
         let personId = document.createElement("h1");
-        personId.textContent = "PersonID : "+jsonData[i].id;
-        personId.classList.add("elementsStyling")
+        personId.textContent = "PersonID: " + item.id;
+        personId.classList.add("elementsStyling");
         textContainer.appendChild(personId);
 
         let personAvatar = document.createElement("img");
-        personAvatar.src = jsonData[i].avatar;
-        personAvatar.classList.add("imageStyling")
+        personAvatar.src = item.avatar;
+        personAvatar.classList.add("imageStyling");
         detilasMainContainer.appendChild(personAvatar);
+    });
+    createPagination(pageNumber);
+}
 
+function createPagination(currentPage) {
+
+    const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+    pagination1.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        const listItems = document.createElement("li");
+        listItems.classList.add("listStyling");
+        listItems.textContent = i;
+
+        // if (i === currentPage) {
+        //     listItems.classList.add("active");
+        // }
+
+
+        listItems.addEventListener("click", () => {
+            arrangeData(i);
+        });
+
+        pagination1.appendChild(listItems);
     }
 }
 
 
-
-var state = {
-    allData:jsonData,
-    "page":1,
-    "rows":5,
-}
-
-function pagination(allData,page,rows) {
-
-}
+// arrangeData(1);
 
 
  
  
-
 
 
 
